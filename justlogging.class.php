@@ -17,6 +17,11 @@ class Justlogging {
   
   function log($entry, $log_key = null){
     $log_key = ($log_key) ? $log_key : $this->log_key;
+
+	// Check if cURL exists
+	if(!function_exists('curl_exec')){
+		throw new Exception('cURL is not installed, please install cURL.');
+	}
     
     $post_data = "access_key=".$this->api_key."&log_key=".$log_key."&entry=".$entry;
     $ch = curl_init(); 
