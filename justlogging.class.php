@@ -28,7 +28,7 @@ class Justlogging {
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data); // add POST fields 
     curl_setopt($ch, CURLOPT_VERBOSE, 0); // Shows debug info if set to 1
     $result = curl_exec($ch); // run the whole process 
-	$info = curl_getinfo($ch);
+	$info = curl_getinfo($ch); // get header info
 	curl_close($ch); 
     
 	if ($info['http_code'] != 201) {
