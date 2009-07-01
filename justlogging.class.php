@@ -23,7 +23,9 @@ class Justlogging {
 		throw new Exception('cURL is not installed, please install cURL.');
 	}
     
+	// Prepare post data
     $post_data = "access_key=".$this->api_key."&log_key=".$log_key."&entry=".$entry;
+
     $ch = curl_init(); 
     curl_setopt($ch, CURLOPT_URL,$this->host()); // set url to post to 
     curl_setopt($ch, CURLOPT_FAILONERROR, 1); 
@@ -36,6 +38,7 @@ class Justlogging {
 	$info = curl_getinfo($ch); // get header info
 	curl_close($ch); 
     
+	// Justlogging returns a 201 if the entry has been saved, on all other codes, the saving failed.
 	if ($info['http_code'] != 201) {
 	  return false;
 	} else {
